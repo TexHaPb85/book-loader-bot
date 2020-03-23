@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.collections.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainMenuController">
+    <children>
+        <TextField fx:id="urlField" layoutX="10.0" layoutY="14.0" prefHeight="30.0" prefWidth="701.0" promptText="ссилка на товар який хочете скачати" />
+        <Button fx:id="loadBtn" layoutX="719.0" layoutY="17.0" mnemonicParsing="false" onAction="#downloadByUrl" text="Викачати" />
+        <Separator layoutY="84.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="17.0" prefWidth="800.0" />
+        <Label layoutX="283.0" layoutY="101.0" text="Результат викачки:">
+            <font>
+                <Font name="System Bold" size="21.0" />
+            </font>
+        </Label>
+        <Label layoutX="28.0" layoutY="143.0" text="Назва товару:">
+            <font>
+                <Font size="14.0" />
+            </font>
+        </Label>
+        <TextField fx:id="nameF" layoutX="150.0" layoutY="140.0" prefHeight="25.0" prefWidth="586.0" />
+        <TextField fx:id="authorF" layoutX="150.0" layoutY="165.0" prefHeight="30.0" prefWidth="586.0" />
+        <TextArea fx:id="descriptionF" layoutX="150.0" layoutY="195.0" prefHeight="110.0" prefWidth="586.0" />
+        <TextField fx:id="priceF" layoutX="150.0" layoutY="305.0" prefHeight="25.0" prefWidth="122.0" />
+        <TextField fx:id="keyWordsF" layoutX="150.0" layoutY="330.0" prefHeight="30.0" prefWidth="586.0" />
+        <TextField fx:id="categoriesF" layoutX="150.0" layoutY="360.0" prefHeight="31.0" prefWidth="586.0" />
+        <Label layoutX="28.0" layoutY="172.0" text="Автор:">
+            <font>
+                <Font size="14.0" />
+            </font>
+        </Label>
+        <Label layoutX="28.0" layoutY="195.0" text="Опис:">
+            <font>
+                <Font size="14.0" />
+            </font>
+        </Label>
+        <Label layoutX="28.0" layoutY="309.0" text="Ціна:">
+            <font>
+                <Font size="14.0" />
+            </font>
+        </Label>
+        <Label layoutX="28.0" layoutY="337.0" text="Ключові слова:">
+            <font>
+                <Font size="14.0" />
+            </font>
+        </Label>
+        <Label layoutX="28.0" layoutY="367.0" text="Категорії:">
+            <font>
+                <Font size="14.0" />
+            </font>
+        </Label>
+        <Label layoutX="631.0" layoutY="480.0" text="by Michail Yevtushenko book-dom.com 2020" textFill="#0026ff">
+            <font>
+                <Font size="8.0" />
+            </font>
+        </Label>
+        <Button layoutX="150.0" layoutY="415.0" mnemonicParsing="false" onAction="#uploadToBookdom" prefHeight="48.0" prefWidth="273.0" text="Завантажити товар на book-dom.com.ua" textAlignment="CENTER" wrapText="true">
+            <font>
+                <Font name="Arial Bold" size="12.0" />
+            </font>
+        </Button>
+        <ChoiceBox fx:id="browserChoiceBox" layoutX="636.0" layoutY="59.0" prefWidth="150.0" value="Mozila Firefox">
+            <items>
+                <FXCollections fx:factory="observableArrayList">
+                    <String fx:value="Google Chrome" />
+                    <String fx:value="Opera" />
+                    <String fx:value="Mozila Firefox" />
+                </FXCollections>
+            </items>
+        </ChoiceBox>
+      <CheckBox fx:id="publishCheck" layoutX="445.0" layoutY="431.0" mnemonicParsing="false" text="Опублікувати без перевірки" />
+    </children>
+</AnchorPane>
