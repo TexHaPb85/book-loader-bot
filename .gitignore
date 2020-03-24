@@ -4,6 +4,10 @@ target/
 !**/src/main/**
 !**/src/test/**
 
+###deploy###
+out
+META-INF
+
 ### STS ###
 .apt_generated
 .classpath
