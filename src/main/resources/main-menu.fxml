@@ -52,7 +52,7 @@
                 <Font size="14.0" />
             </font>
         </Label>
-        <Label layoutX="631.0" layoutY="530.0" text="by Michail Yevtushenko book-dom.com 2020" textFill="#0026ff">
+        <Label layoutX="631.0" layoutY="536.0" text="by Michail Yevtushenko book-dom.com 2020" textFill="#0026ff">
             <font>
                 <Font size="8.0" />
             </font>
@@ -77,8 +77,10 @@
             <Font size="15.0" />
          </font>
       </Button>
-      <Button layoutX="631.0" layoutY="493.0" mnemonicParsing="false" onAction="#chooseDriver" prefHeight="30.0" prefWidth="160.0" text="Вказати geckodriver.exe" />
+      <Button layoutX="622.0" layoutY="482.0" mnemonicParsing="false" onAction="#chooseDriver" prefHeight="25.0" prefWidth="168.0" text="Вказати geckodriver.exe" />
       <Separator layoutY="470.0" prefHeight="17.0" prefWidth="800.0" />
-      <TextField fx:id="driverPathF" layoutX="22.0" layoutY="495.0" prefHeight="25.0" prefWidth="595.0" />
+      <TextField fx:id="driverPathF" layoutX="21.0" layoutY="481.0" prefHeight="25.0" prefWidth="595.0" />
+      <TextField fx:id="propertiesField" layoutX="21.0" layoutY="507.0" prefHeight="25.0" prefWidth="595.0" />
+      <Button layoutX="622.0" layoutY="507.0" mnemonicParsing="false" onAction="#setPropertiesPath" prefHeight="25.0" prefWidth="168.0" text="Вказати файл налаштувань" />
     </children>
 </AnchorPane>

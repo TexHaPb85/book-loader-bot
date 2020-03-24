@@ -12,10 +12,9 @@ public class BookLoaderBotApp extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Stage mainStage = primaryStage;
         Parent root = FXMLLoader.load(getClass().getResource("main-menu.fxml"));
-        mainStage.setTitle("Загружчик книг в книжкин дом");
-        mainStage.setScene(new Scene(root));
-        mainStage.show();
+        primaryStage.setTitle("Загружчик книг в книжкин дом");
+        primaryStage.setScene(new Scene(root));
+        primaryStage.show();
     }
 }

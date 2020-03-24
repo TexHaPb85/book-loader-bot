@@ -13,13 +13,13 @@ public class UploadService {
     private static UploadService uploadService;
     private final String AUTHORIZATION_URI;
     public WebDriver driver;
-    private Properties book_dom_properties;
+    private Properties appProperties;
     private boolean isLoggedIn;
 
     private UploadService() {
         this.driver = WebDriverSupplier.getFirefoxDriver();
-        this.book_dom_properties = PropertiesSupplier.getBookDomProperties();
-        this.AUTHORIZATION_URI = book_dom_properties.getProperty("site_authorization_url");
+        this.appProperties = PropertiesSupplier.getAppProperties();
+        this.AUTHORIZATION_URI = appProperties.getProperty("site_authorization_url");
         this.isLoggedIn = false;
     }
 
@@ -34,7 +34,7 @@ public class UploadService {
         if (!isLoggedIn) {
             logIn();
         }
-        driver.get(book_dom_properties.getProperty("new_product_url"));
+        driver.get(appProperties.getProperty("new_product_url"));
         driver.findElement(By.name("post_title")).sendKeys(good.getTitleOfGood());
         driver.findElement(By.id("_regular_price")).sendKeys(String.valueOf(good.getPrice()));
         driver.findElement(By.name("aiosp_title")).sendKeys(good.getTitleOfGood());
@@ -75,8 +75,8 @@ public class UploadService {
         WebElement passwordField = driver.findElement(By.id("password"));
         WebElement loginBtn = driver.findElement(By.name("login"));
 
-        usernameField.sendKeys(book_dom_properties.getProperty("admin_username"));
-        passwordField.sendKeys(book_dom_properties.getProperty("admin_password"));
+        usernameField.sendKeys(appProperties.getProperty("admin_username"));
+        passwordField.sendKeys(appProperties.getProperty("admin_password"));
         loginBtn.click();
 
         isLoggedIn = true;

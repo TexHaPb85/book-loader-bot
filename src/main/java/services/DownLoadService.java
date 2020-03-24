@@ -9,7 +9,7 @@ public interface DownLoadService {
         if (url.contains("sovabooks")) {
             downLoadService = SovaBookDownloadService.getInstance();
         } else {
-            throw new IllegalArgumentException("unknown site for loading");
+            throw new IllegalArgumentException("Неможливо викачати товар по вказаному посиланню");
         }
         return downLoadService.loadGoodByUrl(url);
     }
