@@ -2,15 +2,19 @@ package controller;
 
 import entities.Good;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 import services.DownLoadService;
 import services.UploadService;
 import util.FileSupplierUtil;
+import util.PropertiesSupplier;
 import util.SettingsUtil;
-import util.WebDriverSupplier;
 
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -30,20 +34,28 @@ public class MainMenuController {
 
     private boolean isSet = false;
 
+    @FXML
+    private void initialize() {
+        driverPathF.setPromptText(PropertiesSupplier.getAppProperties().getProperty("path_to_geckodriver"));
+    }
+
     public void downloadByUrl(ActionEvent actionEvent) {
         if (!isSet) {
             SettingsUtil.setUpApplication((String) browserChoiceBox.getValue());
             isSet = true;
         }
-
-        Good good = DownLoadService.loadByUrl(urlField.getText());
-        nameF.setText(good.getTitleOfGood());
-        authorF.setText(good.getAuthor());
-        descriptionF.setWrapText(true);
-        descriptionF.setText(good.getDescription());
-        priceF.setText(String.valueOf(good.getPrice()));
-        keyWordsF.setText(good.getKeyWordsStr());
-        categoriesF.setText(good.getCategoriesStr());
+        try {
+            Good good = DownLoadService.loadByUrl(urlField.getText());
+            nameF.setText(good.getTitleOfGood());
+            authorF.setText(good.getAuthor());
+            descriptionF.setWrapText(true);
+            descriptionF.setText(good.getDescription());
+            priceF.setText(String.valueOf(good.getPrice()));
+            keyWordsF.setText(good.getKeyWordsStr());
+            categoriesF.setText(good.getCategoriesStr());
+        } catch (IllegalArgumentException iae) {
+            urlField.setText("Не відоме посилання!");
+        }
     }
 
     public void uploadToBookdom(ActionEvent actionEvent) {
@@ -77,8 +89,12 @@ public class MainMenuController {
         System.exit(0);
     }
 
-    public void chooseDriver(ActionEvent actionEvent) {
+    public void chooseDriver(ActionEvent actionEvent) throws IOException {
         File file = FileSupplierUtil.openFile(new Stage());
-        System.out.println(file.getPath());
+        PropertiesSupplier.getAppProperties().setProperty("path_to_geckodriver", file.getAbsolutePath());
+        OutputStream output = new FileOutputStream("src/main/resources/application.properties");
+        PropertiesSupplier.getAppProperties().store(output, "path to geckodriver.exe is changed");
+        isSet = false;
+        initialize();
     }
 }

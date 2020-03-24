@@ -4,8 +4,6 @@ import entities.Good;
 
 public interface DownLoadService {
 
-    Good loadGoodByUrl(String url);
-
     static Good loadByUrl(String url) {
         DownLoadService downLoadService;
         if (url.contains("sovabooks")) {
@@ -15,4 +13,6 @@ public interface DownLoadService {
         }
         return downLoadService.loadGoodByUrl(url);
     }
+
+    Good loadGoodByUrl(String url);
 }

@@ -2,18 +2,16 @@ package util;
 
 import org.openqa.selenium.WebDriver;
 
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.Properties;
 
 public class SettingsUtil {
     public static WebDriver webDriver;
 
-    public static void setUpApplication(String browserName){
+    public static void setUpApplication(String browserName) {
         Properties appProperties = PropertiesSupplier.getAppProperties();
 
-        switch (browserName){
-            case "Google Chrome":{
+        switch (browserName) {
+            case "Google Chrome": {
                 System.setProperty("webdriver.chrome.driver", appProperties.getProperty("path_to_geckodriver"));
                 webDriver = WebDriverSupplier.getChromeDriver();
                 break;
@@ -28,7 +26,8 @@ public class SettingsUtil {
                 webDriver = WebDriverSupplier.getFirefoxDriver();
                 break;
             }
-            default: throw new IllegalArgumentException("unknown browser");
+            default:
+                throw new IllegalArgumentException("unknown browser");
         }
     }
 

@@ -19,6 +19,13 @@ public class SovaBookDownloadService implements DownLoadService {
         webDriver = SettingsUtil.webDriver;
     }
 
+    public static SovaBookDownloadService getInstance() {
+        if (instance == null)
+            instance = new SovaBookDownloadService();
+
+        return instance;
+    }
+
     @Override
     public Good loadGoodByUrl(String url) {
         if (!url.contains(siteHostURL))
@@ -69,12 +76,5 @@ public class SovaBookDownloadService implements DownLoadService {
                 .filter(sentence -> !sentence.contains("sovabook") && !sentence.contains("com") && !sentence.contains("ua"))
                 .reduce((s1, s2) -> s1 + "." + s2)
                 .get();
-    }
-
-    public static SovaBookDownloadService getInstance() {
-        if (instance == null)
-            instance = new SovaBookDownloadService();
-
-        return instance;
     }
 }

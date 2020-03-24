@@ -30,12 +30,16 @@ public class WebDriverSupplier {
         return operaDriver;
     }
 
-    public static WebDriver getDriver(String browserName){
-        switch (browserName){
-            case "Google Chrome": return getChromeDriver();
-            case "Opera": return getOperaDriver();
-            case "Mozila Firefox": return getFirefoxDriver();
-            default: throw new IllegalArgumentException("unknown browser");
+    public static WebDriver getDriver(String browserName) {
+        switch (browserName) {
+            case "Google Chrome":
+                return getChromeDriver();
+            case "Opera":
+                return getOperaDriver();
+            case "Mozila Firefox":
+                return getFirefoxDriver();
+            default:
+                throw new IllegalArgumentException("unknown browser");
         }
     }
 }

@@ -8,8 +8,8 @@ public class PropertiesSupplier {
     private static Properties appProperties;
     private static Properties bookDomProperties;
 
-    public static Properties getBookDomProperties(){
-        if(bookDomProperties==null || bookDomProperties.isEmpty()){
+    public static Properties getBookDomProperties() {
+        if (bookDomProperties == null || bookDomProperties.isEmpty()) {
             bookDomProperties = new Properties();
             try {
                 InputStream inputStream = SettingsUtil.class.getClassLoader().getResourceAsStream("book_dom.properties");
@@ -21,9 +21,9 @@ public class PropertiesSupplier {
         return bookDomProperties;
     }
 
-    protected static Properties getAppProperties(){
-        if(appProperties==null || appProperties.isEmpty()){
-            appProperties=new Properties();
+    public static Properties getAppProperties() {
+        if (appProperties == null || appProperties.isEmpty()) {
+            appProperties = new Properties();
             try {
                 InputStream inputStream = SettingsUtil.class.getClassLoader().getResourceAsStream("application.properties");
                 appProperties.load(inputStream);

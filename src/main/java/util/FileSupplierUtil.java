@@ -6,7 +6,7 @@ import javafx.stage.Stage;
 import java.io.File;
 
 public class FileSupplierUtil {
-    public static File openFile(Stage stage){
+    public static File openFile(Stage stage) {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Відкрий мене");
         fileChooser.getExtensionFilters().addAll(          //задаємо розширення файлів

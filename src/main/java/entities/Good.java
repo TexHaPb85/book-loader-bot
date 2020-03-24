@@ -37,13 +37,13 @@ public class Good {
     private void setKeyWords() {
         this.keyWords = Arrays.stream(titleOfGood.split("[. ]")).collect(Collectors.toList());
         this.keyWords.addAll(Arrays.stream(author.split("[,]")).collect(Collectors.toList()));
-        this.keyWords=keyWords.stream().map(word->word.replaceAll("[:,. -]","")).collect(Collectors.toList());
+        this.keyWords = keyWords.stream().map(word -> word.replaceAll("[:,. -]", "")).collect(Collectors.toList());
         this.keyWords.removeIf(word -> word.length() < 3);
     }
 
     public String getKeyWordsStr() {
         StringBuilder sb = new StringBuilder();
-        keyWords.forEach(word->{
+        keyWords.forEach(word -> {
             sb.append(word).append(",");
         });
         return sb.toString();
@@ -51,7 +51,7 @@ public class Good {
 
     public String getCategoriesStr() {
         StringBuilder sb = new StringBuilder();
-        categories.forEach(categ->{
+        categories.forEach(categ -> {
             sb.append(categ).append(",");
         });
         return sb.toString();
@@ -113,7 +113,7 @@ public class Good {
     public String toString() {
         return "entities.Good{" +
                 "\n nameOfGood='" + titleOfGood + '\'' +
-                "\n author='" + author + '\''+
+                "\n author='" + author + '\'' +
                 "\n description='" + description + '\'' +
                 "\n price=" + price +
                 "\n keyWords=" + keyWords +
