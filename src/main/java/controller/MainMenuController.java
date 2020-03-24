@@ -3,10 +3,14 @@ package controller;
 import entities.Good;
 import javafx.event.ActionEvent;
 import javafx.scene.control.*;
+import javafx.stage.Stage;
 import services.DownLoadService;
 import services.UploadService;
+import util.FileSupplierUtil;
 import util.SettingsUtil;
+import util.WebDriverSupplier;
 
+import java.io.File;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -22,6 +26,7 @@ public class MainMenuController {
     public TextField categoriesF;
     public ChoiceBox browserChoiceBox;
     public CheckBox publishCheck;
+    public TextField driverPathF;
 
     private boolean isSet = false;
 
@@ -51,14 +56,14 @@ public class MainMenuController {
                 .map(String::trim)
                 .collect(Collectors.toList());
         List<String> categories = Arrays.stream(categoriesF.getText().split("[,]")).map(String::trim).collect(Collectors.toList());
-        Good good = new Good(author,title,description,price,kw,categories);
-        clear();
+        Good good = new Good(author, title, description, price, kw, categories);
+        urlField.clear();
 
         UploadService uploadService = UploadService.getInstance();
         uploadService.uploadToBookDom(good, publishCheck.isSelected());
     }
 
-    private void clear(){
+    private void clear() {
         urlField.clear();
         nameF.clear();
         authorF.clear();
@@ -66,5 +71,14 @@ public class MainMenuController {
         priceF.clear();
         keyWordsF.clear();
         categoriesF.clear();
+    }
+
+    public void exit(ActionEvent actionEvent) {
+        System.exit(0);
+    }
+
+    public void chooseDriver(ActionEvent actionEvent) {
+        File file = FileSupplierUtil.openFile(new Stage());
+        System.out.println(file.getPath());
     }
 }

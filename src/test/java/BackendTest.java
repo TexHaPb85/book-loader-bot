@@ -1,10 +1,8 @@
 import entities.Good;
-import org.junit.Test;
 import util.SettingsUtil;
-import util.SovaBooksLoadUtil;
 
 public class BackendTest {
-    @Test
+    //@Test
     public void loadTest(){
         SettingsUtil.setUpApplication("Mozila Firefox");
         Good good = SovaBooksLoadUtil

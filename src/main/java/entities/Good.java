@@ -37,6 +37,7 @@ public class Good {
     private void setKeyWords() {
         this.keyWords = Arrays.stream(titleOfGood.split("[. ]")).collect(Collectors.toList());
         this.keyWords.addAll(Arrays.stream(author.split("[,]")).collect(Collectors.toList()));
+        this.keyWords=keyWords.stream().map(word->word.replaceAll("[:,. -]","")).collect(Collectors.toList());
         this.keyWords.removeIf(word -> word.length() < 3);
     }
 

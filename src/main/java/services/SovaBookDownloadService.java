@@ -1,23 +1,27 @@
-package util;
+package services;
 
 import entities.Good;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import util.SettingsUtil;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class SovaBooksLoadUtil {
-    private static WebDriver webDriver;
-    private static final String siteHostURL = "sovabooks.com.ua";
+public class SovaBookDownloadService implements DownLoadService {
+    private static SovaBookDownloadService instance;
+    private final String siteHostURL = "sovabooks";
+    private WebDriver webDriver;
 
-    public static Good loadGoodByURL(String url) {
-        if (webDriver == null)
-            webDriver =SettingsUtil.webDriver;
+    private SovaBookDownloadService() {
+        webDriver = SettingsUtil.webDriver;
+    }
 
-        if(!url.contains(siteHostURL))
+    @Override
+    public Good loadGoodByUrl(String url) {
+        if (!url.contains(siteHostURL))
             throw new IllegalArgumentException("wrong url");
 
         webDriver.get(url);
@@ -48,15 +52,29 @@ public class SovaBooksLoadUtil {
         List<WebElement> elements = webDriver
                 .findElement(By.className("breadcrumbs"))
                 .findElements(By.className("category"));
-        elements.remove(elements.size()-1);
+        elements.remove(elements.size() - 1);
 
         List<String> categories = elements.stream()
                 .map(WebElement::getText)
                 .flatMap(category -> Arrays.stream(category.split("[,.]")))
                 .map(String::trim)
-                .map(word->word.replaceAll(":",""))
+                .map(word -> word.replaceAll("[:,.-]", ""))
                 .collect(Collectors.toList());
 
-        return new Good(author,goodTitle,description,price,categories);
+        return new Good(author, goodTitle, clearDescription(description), price, categories);
+    }
+
+    private String clearDescription(String description) {
+        return Arrays.stream(description.split("[.]"))
+                .filter(sentence -> !sentence.contains("sovabook") && !sentence.contains("com") && !sentence.contains("ua"))
+                .reduce((s1, s2) -> s1 + "." + s2)
+                .get();
+    }
+
+    public static SovaBookDownloadService getInstance() {
+        if (instance == null)
+            instance = new SovaBookDownloadService();
+
+        return instance;
     }
 }

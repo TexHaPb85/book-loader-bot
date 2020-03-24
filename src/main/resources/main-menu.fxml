@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainMenuController">
+<AnchorPane prefHeight="550.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainMenuController">
     <children>
         <TextField fx:id="urlField" layoutX="10.0" layoutY="14.0" prefHeight="30.0" prefWidth="701.0" promptText="ссилка на товар який хочете скачати" />
         <Button fx:id="loadBtn" layoutX="719.0" layoutY="17.0" mnemonicParsing="false" onAction="#downloadByUrl" text="Викачати" />
@@ -52,7 +52,7 @@
                 <Font size="14.0" />
             </font>
         </Label>
-        <Label layoutX="631.0" layoutY="480.0" text="by Michail Yevtushenko book-dom.com 2020" textFill="#0026ff">
+        <Label layoutX="631.0" layoutY="530.0" text="by Michail Yevtushenko book-dom.com 2020" textFill="#0026ff">
             <font>
                 <Font size="8.0" />
             </font>
@@ -72,5 +72,13 @@
             </items>
         </ChoiceBox>
       <CheckBox fx:id="publishCheck" layoutX="445.0" layoutY="431.0" mnemonicParsing="false" text="Опублікувати без перевірки" />
+      <Button layoutX="10.0" layoutY="47.0" mnemonicParsing="false" onAction="#exit" prefHeight="38.0" prefWidth="245.0" text="Закінчити роботу і вийти">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Button>
+      <Button layoutX="631.0" layoutY="493.0" mnemonicParsing="false" onAction="#chooseDriver" prefHeight="30.0" prefWidth="160.0" text="Вказати geckodriver.exe" />
+      <Separator layoutY="470.0" prefHeight="17.0" prefWidth="800.0" />
+      <TextField fx:id="driverPathF" layoutX="22.0" layoutY="495.0" prefHeight="25.0" prefWidth="595.0" />
     </children>
 </AnchorPane>
